@@ -8,28 +8,41 @@
       src="https://kit.fontawesome.com/54d7adb57a.js"
       crossorigin="anonymous"
     ></script>
-
+    <style>
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 1em;
+        }
+        .masonry-grid-item {
+            break-inside: avoid;
+            margin-bottom: 1em;
+            width: 100%;
+        }
+        .masonry-grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        @media (max-width: 480px) {
+            .masonry-grid {
+                column-count: 1;
+            }
+        }
+    </style>
     <!-- CSS File -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- Bootstrap  CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
 
   <body>
-    <header class="header mb-5">
-      <nav id="nav-bar" class="text-white">
-        <div class="Box">
-          <ul
-            class="d-flex justify-content-around list-unstyled position-fixed end-0 start-0 pb-2 pt-3 "
-          >
-            <li class="nav-item">ملاكى</li>
-            <li class="nav-item active">جامبو</li>
-            <li class="nav-item size">دبابة&Dimx</li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
+    <header class="header mb-5   z-index-10" >
     <div class="logo text-center mt-4">
       <img src="./Images/Logo.jpg" alt="" />
     </div>
@@ -38,61 +51,103 @@
        سمير شويقة سروجي السنبلاوين01002679734 
     </h2>
 
+  <nav id="nav-bar" class="text-white">
+    <div class="Box">
+      <ul class="d-flex justify-content-around list-unstyled    pb-2 pt-3 ">
+        <li class="nav-item"><a href="#" class="filter-btn" data-filter="category1">ملاكى</a></li>
+        <li class="nav-item"><a href="#" class="filter-btn" data-filter="category2">جامبو</a></li>
+        <li class="nav-item"><a href="#" class="filter-btn" data-filter="category3">دبابة&Dimx</a></li>
+
+      </ul>
+    </div>
+  </nav>
+</header>
+   
     <!-- Gallery-- -->
     <div id="gallery" class="gallery">
-      <div class="container">
-        <div class="gallery-img">
-          <picture class="one">
-            <img src="./Images/8resize.jpg" alt="" />
-          </picture>
-          <picture class="two">
-            <img src="./Images/2.jpg" alt="" />
-          </picture>
-          <picture class="three">
-            <img src="./Images/3.jpg" alt="" />
-          </picture>
-          <picture class="four">
-            <img src="./Images/4.jpg" alt="" />
-          </picture>
-          <picture class="five">
-            <img src="./Images/5.jpg" alt="" />
-          </picture>
-          <picture class="six">
-            <img src="./Images/6.jpg" alt="" />
-          </picture>
-          <picture class="seven">
-            <img src="./Images/7.jpg" alt="" />
-          </picture>
-          <picture class="eight">
-            <img src="./Images/2.jpg" alt="" />
-          </picture>
-          <picture class="nine">
-            <img src="./Images/9.jpg" alt="" />
-          </picture>
-          <picture class="ten">
-            <img src="./Images/10.jpg" alt="" />
-          </picture>
-          <picture class="one">
-            <img src="./Images/11.jpg" alt="" />
-          </picture>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 masonry-grid">
+      
+        <!-- Your images go here -->
+        <div class="masonry-grid-item one" data-album="album1"  data-category="category3" >
+          <img src="./Images/8resize.jpg" ata-album="album1" alt="Description" >
+        </div>
+        <div class="masonry-grid-item two" data-album="album2" data-category="category1"  >
+          <img src="./Images/2.jpg"   data-album="album2" alt="Description" >
+        </div>
+  <div class="masonry-grid-item three"  data-album="album3" data-category="category3" >
+    <img src="./Images/8resize.jpg"  data-album="album3"  alt=""  />
+  </div>
+    <div class="masonry-grid-item one" data-album="album1"  data-category="category2" >
+      <img src="./Images/3.jpg"  ata-album="album1"  alt="Description" >
+    </div>
+    <div class="masonry-grid-item two" data-album="album2" data-category="category1" >
+      <img src="./Images/2.jpg" data-album="album2"  alt="Description"  >
+    </div>
+    <div class="masonry-grid-item three" data-album="album1"  data-category="category3" >
+      <img src="./Images/4.jpg" data-album="album1"   alt=""  />
+    </div>
+        <div class="masonry-grid-item one" data-album="album1"  data-category="category2">
+          <img src="./Images/5.jpg"   data-album="album1"  alt="Description" >
+        </div>
+        <div class="masonry-grid-item two"  data-album="album2" data-category="category1">
+          <img src="./Images/6.jpg" data-album="album2"  alt="Description" >
+        </div>
+        <div class="masonry-grid-item three"  data-album="album3" data-category="category3" >
+          <img src="./Images/7.jpg"  data-album="album3" alt=""  />
+        </div>
+<div class="masonry-grid-item one" data-album="album1" data-category="category1">
+  <img src="./Images/8.jpg" data-album="album1"  alt=""  />
+</div>
+<div class="masonry-grid-item two" data-album="album2" data-category="category3" >
+  <img src="./Images/9.jpg" data-album="album2"  alt="" />
+
+</div>
+<div class="masonry-grid-item three " data-album="album3"  data-category="category2">
+  <img src="./Images/10.jpg" data-album="album3"  alt=""/>
+</div>
+<div class="masonry-grid-item three" data-album="album3"  data-category="category1">
+  <img src="./Images/11.jpg"  data-album="album3"  alt=""   />
+</div>
+
+        
+          
         </div>
       </div>
     </div>
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <div id="lightboxContainer" class="lightbox-container">
+    <!-- Album images container -->
+    <div id="albumImagesGrid" class="album-images-grid"></div>
+    <!-- Navigation buttons -->
+    <a class="prev" onclick="changeAlbum(-1)">&#10094;</a>
+    <a class="next" onclick="changeAlbum(1)">&#10095;</a>
+  </div>
+  <div id="caption"></div>
+</div>
 
     <footer
       class="footer d-flex justify-content-between px-5 position-fixed bottom-0"
     >
       <div class="chose">
-        <h2><a href="">تحديد</a></h2>
-      </div>
+  <h2><a href="#" id="select-all">تحديد</a></h2>
+</div>
       <div class="send">
         <h2 class="d-inline-block"><a href="">ارسال</a></h2>
         <i class="fa-solid fa-paper-plane fa-2xl"></i>
       </div>
     </footer>
     <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <script src="js/bootstrap.bundle.min.js"></script>
     <!-- JS File -->
     <script src="js/index.js"></script>
+ 
+
   </body>
 </html>
