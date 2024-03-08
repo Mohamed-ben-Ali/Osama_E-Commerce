@@ -1,70 +1,66 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Filters
-  document.querySelectorAll(".filter-btn").forEach((button) => {
-    button.addEventListener("click", function (e) {
-      e.preventDefault();
-      const filter = this.getAttribute("data-filter");
-      document.querySelectorAll(".masonry-grid-item").forEach((item) => {
-        if (filter === "all" || item.getAttribute("data-category") === filter) {
-          item.style.display = "block";
-        } else {
-          item.style.display = "none";
-        }
-      });
-    });
+  // Initially set label visibility to hidden
+  document.querySelectorAll(".image-checkbox-label").forEach((label) => {
+    label.style.visibility = "hidden"; // Hide labels initially
   });
 
-  // Gallery
-  let currentGallery = [];
-  let currentIndex = 0;
-
- 
-function updateImage(index) {
-  const imgModal = document.getElementById("img01");
-  if (currentGallery && currentGallery.length > index) {
-    imgModal.src = currentGallery[index];
-  }
-}
-  // Selection
+  // "Select All" button logic to toggle label visibility
   document.getElementById("select-all").addEventListener("click", function (e) {
     e.preventDefault();
-    const checkboxes = document.querySelectorAll(".image-checkbox");
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = !checkbox.checked;
+    document.querySelectorAll(".image-checkbox-label").forEach((label) => {
+      label.style.visibility =
+        label.style.visibility === "hidden" ? "visible" : "hidden";
     });
   });
 
+  // Prepare checkboxes and labels for each masonry grid item
+  document.querySelectorAll(".masonry-grid-item").forEach((item) => {
+    // Create and append checkbox if not already present
+    let checkbox = item.querySelector(".image-checkbox");
+    if (!checkbox) {
+      checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.classList.add("image-checkbox");
+      checkbox.style.display = "none"; // Keep the actual checkbox hidden; interaction will be through the label
+
+      // Create label which visually represents the checkbox
+      const label = document.createElement("label");
+      label.classList.add("image-checkbox-label");
+      label.appendChild(checkbox);
+
+      // Create a visual indicator (checkmark) for the label
+      const checkmark = document.createElement("span");
+      checkmark.classList.add("checkmark");
+      label.appendChild(checkmark);
+
+      item.appendChild(label);
+
+      // Toggle checkbox checked state on label click
+      label.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent triggering any parent click events
+        checkbox.checked = !checkbox.checked;
+      });
+    }
+  });
+  // Gallery
+  let currentGallery = [];
+
   const albums = {
-    album1: [
-      "./Images/8resize.jpg",
-      "./Images/3.jpg",
-      "./Images/9.jpg",
-    ],
-    album2: [
-      "./Images/4.jpg",
-      "./Images/5.jpg",
-      "./Images/6.jpg",
-    ],
-    album3: [
-      "./Images/7.jpg",
-      "./Images/9.jpg",
-      "./Images/11.jpg",
-    ],
+    album1: ["./Images/8resize.jpg", "./Images/3.jpg", "./Images/9.jpg"],
+    album2: ["./Images/4.jpg", "./Images/5.jpg", "./Images/6.jpg"],
+    album3: ["./Images/7.jpg", "./Images/9.jpg", "./Images/11.jpg"],
 
     // ... other albums
   };
   // Add checkboxes
-document.querySelectorAll(".masonry-grid-item img").forEach((img) => {
-  img.addEventListener("click", function () {
-    const albumKey = this.getAttribute("data-album");
-    if (albums[albumKey]) {
-      openLightbox(albumKey);
-    }
+  document.querySelectorAll(".masonry-grid-item img").forEach((img) => {
+    img.addEventListener("click", function () {
+      const albumKey = this.getAttribute("data-album");
+      if (albums[albumKey]) {
+        openLightbox(albumKey);
+      }
+    });
   });
-});
-
-
-
 
   document.querySelectorAll(".masonry-grid-item").forEach((item) => {
     const label = document.createElement("label");
@@ -95,14 +91,14 @@ document.querySelectorAll(".masonry-grid-item img").forEach((img) => {
     ],
     category3: ["./Images/2.jpg", "./Images/10.jpg"],
   };
-function updateImage(index) {
-  const imgModal = document.getElementById("img01");
-  if (currentGallery && currentGallery.length > index) {
-    imgModal.src = currentGallery[index];
-  } else {
-    console.error("Invalid index or gallery:", index, currentGallery);
+  function updateImage(index) {
+    const imgModal = document.getElementById("img01");
+    if (currentGallery && currentGallery.length > index) {
+      imgModal.src = currentGallery[index];
+    } else {
+      console.error("Invalid index or gallery:", index, currentGallery);
+    }
   }
-}
 
   // Lightbox functions
   function openLightbox(albumKey) {
@@ -137,32 +133,31 @@ function updateImage(index) {
     }
   });
 });
-  const selectAllButton = document.getElementById("select-all");
-   document.querySelectorAll(".masonry-grid-item").forEach((item) => {
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.classList.add("image-checkbox");
-    checkbox.style.opacity = "0"; // Make checkboxes invisible initially
-    checkbox.style.position = "absolute";
-    checkbox.style.right = "10px";
-    checkbox.style.top = "10px";
-    item.style.position = "relative"; // Ensure that the item's position is relative
-    item.appendChild(checkbox);
-  });
+const selectAllButton = document.getElementById("select-all");
+document.querySelectorAll(".masonry-grid-item").forEach((item) => {
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.classList.add("image-checkbox");
+  checkbox.style.opacity = "0"; // Make checkboxes invisible initially
+  checkbox.style.position = "absolute";
+  checkbox.style.right = "10px";
+  checkbox.style.top = "10px";
+  item.style.position = "relative"; // Ensure that the item's position is relative
+  item.appendChild(checkbox);
+});
 
-  // Toggle visibility of checkboxes when the select-all button is clicked
-  document.getElementById("select-all").addEventListener("click", function (e) {
-    e.preventDefault();
-    const checkboxes = document.querySelectorAll(".image-checkbox");
-    checkboxes.forEach((checkbox) => {
-      checkbox.style.opacity = checkbox.style.opacity === "0" ? "1" : "0";
-    });
+// Toggle visibility of checkboxes when the select-all button is clicked
+document.getElementById("select-all").addEventListener("click", function (e) {
+  e.preventDefault();
+  const checkboxes = document.querySelectorAll(".image-checkbox");
+  checkboxes.forEach((checkbox) => {
+    checkbox.style.opacity = checkbox.style.opacity === "0" ? "1" : "0";
   });
+});
 
-
-  document.getElementById("select-all").addEventListener("click", function (e) {
-    e.preventDefault();
-    document.querySelectorAll(".image-checkbox").forEach((checkbox) => {
-      checkbox.style.opacity = checkbox.style.opacity === "0" ? "1" : "0";
-    });
+document.getElementById("select-all").addEventListener("click", function (e) {
+  e.preventDefault();
+  document.querySelectorAll(".image-checkbox").forEach((checkbox) => {
+    checkbox.style.opacity = checkbox.style.opacity === "0" ? "1" : "0";
   });
+});

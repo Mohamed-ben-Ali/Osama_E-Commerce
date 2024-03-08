@@ -42,6 +42,7 @@ nav ul .nav-item:hover::after{
 body {
   box-sizing: border-box;
   position: relative;
+
 }
 
 html {
@@ -82,7 +83,7 @@ body {
 .header {
   margin: 0 auto;
   padding: 3rem 0;
-  width: 65%;
+  width: 85%;
 }
 .header ul{
   background-color: black;
@@ -116,24 +117,7 @@ a{
            margin-bottom: 1rem;
          }
     
-         /* Responsive adjustments */
-         @media (max-width: 992px) {
-           .masonry-grid {
-             column-count: 3;
-           }
-         }
-    
-         @media (max-width: 768px) {
-           .masonry-grid {
-             column-count: 2;
-           }
-         }
-    
-         @media (max-width: 576px) {
-           .masonry-grid {
-             column-count: 1;
-           }
-         }
+      
 /* Grids --------------------------------------------*/
 /* 
 .container {
@@ -224,16 +208,6 @@ a{
   border-radius: 20px;
   
 }
-@media screen and (min-width:1000px){
-  .gallery-img picture{
-    width: calc(calc(100% - 15px * 2) / 4);
-  }
-  .gallery-img{
-    flex-wrap: nowrap;
-    flex-direction: row;
-  }
-}
-
 
 
 .gallery-img {
@@ -398,7 +372,7 @@ a{
   height: 25px;
   width: 25px;
   background-color: #eee;
-  border-radius: 50%;
+
   cursor: pointer;
 }
 
@@ -415,11 +389,12 @@ a{
   height: 25px;
   width: 25px;
   background-color: #eee;
-  border-radius: 50%;
+
 }
 
 .image-checkbox:checked~.checkmark {
   background-color: #2196F3;
+
 }
 
 .checkmark:after {
@@ -430,6 +405,7 @@ a{
 
 .image-checkbox:checked~.checkmark:after {
   display: block;
+ 
 }
 
 .checkmark:after {
@@ -437,7 +413,7 @@ a{
   left: 9px;
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+
   background: white;
 }
 
@@ -450,7 +426,7 @@ a{
   background-color: transparent;
   border: 2px solid white;
   /* White border for visibility */
-  border-radius: 50%;
+
   cursor: pointer;
   visibility: hidden;
   /* Initially hidden */
@@ -467,7 +443,7 @@ a{
   left: 0;
   height: 25px;
   width: 25px;
-  border-radius: 50%;
+
   background-color: #2196F3;
   visibility: hidden;
   /* Initially hidden */
@@ -505,9 +481,30 @@ a{
 }
 
 
-@media (max-width: 768px) {
-  .album-image {
-    min-width: 120px;
-    max-width: 200px;
-  }
-}
+     .masonry-grid {
+       column-count: 3;
+       column-gap: 1em;
+     }
+  
+     .masonry-grid-item {
+       break-inside: avoid;
+       margin-bottom: 1em;
+       width: 100%;
+       border-radius: 20px;
+     }
+  
+     .masonry-grid-item img {
+       width: 100%;
+       height: auto;
+       display: block;
+       border-radius: 20px;
+     }
+  
+     .navbar {
+       width: 45%;
+       margin: auto;
+  
+       @media (max-width:768px) {
+         width: 100%;
+       }
+     }
