@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var header = document.querySelector(".header");
+
   // Initially set label visibility to hidden
   document.querySelectorAll(".image-checkbox-label").forEach((label) => {
     label.style.visibility = "hidden"; // Hide labels initially
@@ -42,6 +44,27 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   });
+  document.querySelectorAll(".filter-btn").forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent default link action
+      const filter = this.getAttribute("data-filter"); // Get the filter category from the button
+      filterGallery(filter); // Call the filter function with the selected category
+    });
+  });
+
+  // Function to filter gallery items
+  function filterGallery(category) {
+    document.querySelectorAll(".masonry-grid-item").forEach((item) => {
+      if (
+        category === "all" ||
+        item.getAttribute("data-category") === category
+      ) {
+        item.style.display = ""; // Show item if it matches the filter or if filter is 'all'
+      } else {
+        item.style.display = "none"; // Hide item if it doesn't match the filter
+      }
+    });
+  }
   // Gallery
   let currentGallery = [];
 
@@ -123,15 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("imageModal").style.display = "none";
   });
 
-  // Header fixed on scroll
-  var header = document.querySelector(".header");
-  window.addEventListener("scroll", function () {
-    if (window.scrollY > 50) {
-      header.classList.add("header--fixed");
-    } else {
-      header.classList.remove("header--fixed");
-    }
-  });
+  
 });
 const selectAllButton = document.getElementById("select-all");
 document.querySelectorAll(".masonry-grid-item").forEach((item) => {
